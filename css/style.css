@@ -61,7 +61,7 @@ body {
 
 /* ajustement dimension logo acteur sur index */
 .mini_logo img {
-	width: 150px;
+	width: 140px;
 }
 
 
@@ -69,15 +69,28 @@ body {
 	border: 1px solid;
 	margin: 5px;
 	padding: 5px;
+	font-size: 14px;
 }
 
 .mini_logo {
 	float: left;
 	padding: 5px;
+	margin-top: 4px;
 }
 
 .texte_position {
-	padding: 8px;
+	margin-top: 12px;
+}
+
+/* Placement du bouton "lire la suite"*/
+.button {
+	text-align: right;
+	margin-top: -25px;
+}
+
+.forme_button {
+	border-radius: 6px;
+	padding: 4px;
 }
 
 
