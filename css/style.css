@@ -12,19 +12,21 @@ body {
     margin-right: auto;
 }
 
-/* mise en forme des container */
+/* mise en forme des container page index */
 
-.container_1, .container_2, .container_3 {
+.container_presentation, .container_description, .container_tableau, .container_acteur, .container_commentaire {
 	width: 90%;
 	margin: auto;
 }
 
-.container_1 h1,p, .container_2 h2,p, .container_3 h3,p {
-	margin-top: -8px;
+.container_tableau {
+	border: 1px solid;
 }
 
-.container_3 {
-	border: 1px solid;
+/* Definition de la taille du texte des container presentation et description */
+
+.texte_presentation, .texte_description {
+	font-size: 16px;
 }
 
 /* taille et place logo GBAF*/
@@ -75,7 +77,7 @@ body {
 .mini_logo {
 	float: left;
 	padding: 5px;
-	margin-top: 4px;
+	margin-top: 15px;
 }
 
 .texte_position {
@@ -85,7 +87,6 @@ body {
 /* Placement du bouton "lire la suite"*/
 .button {
 	text-align: right;
-	margin-top: -25px;
 }
 
 .forme_button {
@@ -104,3 +105,50 @@ body {
 	color: black;
 	text-decoration:none;
 }
+
+
+
+													/*-------------------------------- Style CSS de la page Acteur ci dessous ------------------------------------------ */
+
+
+.image_acteur img {
+	width: 250px;
+}
+
+.image_acteur {
+	text-align: center;
+}
+
+.texte_acteur {
+	font-size: 14px;
+	padding: 15px;
+}
+
+/* block commentaire */
+
+.nombre_commentaire{
+	margin-left: 15px;
+	display: inline-block;
+}
+
+.new_commentaire {
+	
+}
+.bouton_commentaire{
+}
+
+.container_commentaire {
+	border: 1px solid;
+}
+
+.commentaire {
+	border: 1px solid;
+	border-radius: 4px;
+	font-size: 12px;
+	width: 90%;
+	margin: auto;
+	margin-bottom: 10px;
+	padding: 5px;
+}
+
+
