@@ -14,14 +14,15 @@ if (!empty($_POST['inscription'])){
 	$question = htmlspecialchars($_POST['question']);
 	$reponse = htmlspecialchars($_POST['reponse']);
 	$pass_hash = password_hash($password, PASSWORD_DEFAULT);
-	$user_exist = $bdd->query("SELECT username FROM account WHERE username = '' "); 
+	$user_exist = $bdd->prepare('SELECT username FROM account WHERE username = ? '); 
+	$user_exist ->execute(array($username));
 	$user_exist = $user_exist->fetch();
 
 	    if (isset($nom) && $prenom && $username && $question && $reponse && $password)  {
 	    	if (strlen($password) <= 8) {
 	    		$error = 'le mot de passe doit contenir 8 caractères<br/>';
 	    	}
-	    	elseif ($user_exist = true) {
+	    	elseif ($user_exist != Null) {
 	    		$error_user = 'Le pseudo est déjà utilisé';
 	    	}
 	    	else{
