@@ -1,6 +1,11 @@
 <?php
-session_start();
-require_once('db/bdd.php');	
+
+$loginPage = true;
+
+require('header.php');
+if ($session_connecte AND $loginPage == true) {
+	header('Location: index.php');
+}
 
 $succes = '';
 $error = '';
@@ -9,7 +14,7 @@ $error_user = '';
 if (!empty($_POST['inscription'])){
 	$nom = htmlspecialchars($_POST['nom']);
 	$prenom = htmlspecialchars($_POST['prenom']);
-	$username= htmlspecialchars($_POST['username']);
+	$username = htmlspecialchars($_POST['username']);
 	$password = htmlspecialchars($_POST['password']);
 	$question = htmlspecialchars($_POST['question']);
 	$reponse = htmlspecialchars($_POST['reponse']);
@@ -29,6 +34,7 @@ if (!empty($_POST['inscription'])){
 	    		$succes = 'Inscription prise en compte';
 				$req = $bdd->prepare('INSERT INTO account(nom, prenom, username, password, question, reponse) VALUES(?, ?, ?, ?, ?, ?)');
 				$req->execute(array($nom, $prenom, $username, $pass_hash, $question, $reponse));
+				header('location: login.php');
 			}
 	    }	
 		else{
@@ -40,13 +46,12 @@ if (!empty($_POST['inscription'])){
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Extranet</title>
+        <title>Inscription - GBAF</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/style.css" />
     </head>
 	
     <body>
-		<?php include("header.php"); ?>
 		<hr/>
 			
 			<form action="register.php" method="POST" class="register">
