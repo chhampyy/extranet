@@ -1,3 +1,17 @@
+<?php 
+require_once('db/bdd.php');
+require_once('header.php');
+if (!$session_connecte AND $loginPage == false) {
+	header('Location: login.php');
+}
+
+$req = $bdd->query('SELECT id_acteur, acteur, IF(CHAR_LENGTH(description) > 50, CONCAT(LEFT(description, 50), "..."), description) AS description, logo FROM acteur');
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,7 +21,6 @@
     </head>
 	
     <body>
-		<?php include("header.php"); ?>
 		<hr/>
 		
 		<div class="container_presentation">
@@ -29,16 +42,17 @@
 		</div>
 		
 		<div class="container_tableau">
+			<?php while($donnees = $req->fetch()): ?>
 			<div class="tableau">
-				<div class="mini_logo"><img src="css/images/formation_co.png"/></div>
+				
+				<div class="mini_logo"><img src="<?= $donnees['logo'] ?>"/></div>
 					<div class="texte_position">
-						<h3>Nom Acteur</h3>
-						<p>Le Lorem Ipsum Lorem Ipsum. </p>
-						<div class="button"><input class="forme_button" type="button" value="Lire la suite"></div>
+						<h3><?= $donnees['acteur'] ?></h3>
+						<p><?= $donnees['description']  ?> </p>
+						<div class="button"><a href="acteur.php?acteur_id=<?= $donnees['id_acteur']?>"><input class="forme_button" type="button" value="Lire la suite" ></a></div>
 					</div>
-					
 			</div>
-			
+			<?php endwhile ?> 
 		</div>
 		<hr/>
 		<?php include("footer.php"); ?>
