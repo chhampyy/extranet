@@ -3,7 +3,8 @@ require('db/bdd.php');
 require ('header.php');
 
 
-
+$error = Null;
+$succes = Null;
 if (!empty($_POST['password'])) {
 	$req = $bdd->prepare('SELECT username, password FROM account WHERE id_user = :id_user');
 	$req->execute(array('id_user' => $_SESSION['id_user']));
@@ -15,23 +16,25 @@ if (!empty($_POST['password'])) {
 	$password_correct = password_verify($old_pass, $resultat['password']);
 
 		if ($resultat['password'] != $password_correct) {
-			echo "Ce n'est pas votre mot de passe";	
+			$error = "Ce n'est pas votre mot de passe";	
 		}
 		else{
 			if (strlen($new_pass) <= 8) {
-				echo 'Mot de passe doit contenir 8 caractères';
+				$error = 'Mot de passe doit contenir 8 caractères';
 			}
 			else{
 				$req = $bdd->prepare('UPDATE account SET password = :password WHERE id_user = :id_user'); 
 				$req->execute(array(
 					'password' => $password_hash,
 					'id_user' => $_SESSION['id_user']));
-				echo 'Le mot de passe a bien été modifié';
+				$succes = 'Le mot de passe a bien été modifié';
 		}
 	}
 }
 
-
+$error_user = Null;
+$succes_user = Null;
+$error_user_pseudo = Null;
 if (!empty($_POST['username'])) {
 	$req = $bdd->prepare('SELECT username, password FROM account WHERE id_user = :id_user');
 	$req->execute(array('id_user' => $_SESSION['id_user']));
@@ -43,21 +46,21 @@ if (!empty($_POST['username'])) {
 	$user_exist = $user_exist->fetch();
 
 		if ($result['username'] != $old_username) {
-			echo "Ce n'est pas votre pseudo";	
+			$error_user = "Ce n'est pas votre pseudo";	
 		}
 		else{
 			if ($user_exist != Null) {
-				echo 'Le pseudo est déjà utilisé';
+				$error_user = 'Le pseudo est déjà utilisé';
 			}
 			elseif (empty($new_username)) {
-				echo 'Renseigne un pseudo coco';
+				$error_user = 'Renseignez votre nouveau pseudo';
 			}
 			else{
 				$req = $bdd->prepare('UPDATE account SET username = :username WHERE id_user = :id_user'); 
 				$req->execute(array(
 					'username' => $new_username,
 					'id_user' => $_SESSION['id_user']));
-				echo 'Le pseudo a bien été modifié';
+				$succes_user = 'Le pseudo a bien été modifié';
 		}
 	}
 }
@@ -79,20 +82,22 @@ if (!empty($_POST['username'])) {
 			<fieldset>
 				<legend>Modifier votre mot de passe</legend>
 						<p><label>Mot de passe actuel</label><br/>
-						<input type="texte" name="old_pass" placeholder="Entrez votre mot de passe actuel" /></p>
+						<input type="password" name="old_pass"  /></p>
 						<p><label>Nouveau mot de passe</label><br/>
-						<input type="password" name="new_pass" placeholder="Entrez votre nouveau mot de passe" /></p>
+						<input type="password" name="new_pass"  /></p>
 						<input type="submit" name="password">
+						<p><?= $error ?> <?= $succes ?></p>
 			</fieldset>
 		</form>
 		<form action="" method="POST">
 			<fieldset>
 				<legend>Modifier votre pseudo</legend>
 						<p><label>Pseudo actuel</label><br/>
-						<input type="texte" name="old_username" placeholder="Entrez votre mot de passe actuel" /></p>
+						<input type="text" name="old_username"  /></p>
 						<p><label>Nouveau pseudo</label><br/>
-						<input type="password" name="new_username" placeholder="Entrez votre nouveau mot de passe" /></p>
+						<input type="text" name="new_username"  /></p>
 						<input type="submit" name="username">
+						<p><?= $error_user ?> <?= $succes_user ?></p>
 			</fieldset>
 		</form>
 	<hr>
