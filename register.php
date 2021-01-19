@@ -3,6 +3,8 @@
 $loginPage = true;
 
 require('header.php');
+
+//Vérification si utilisateur connecté
 if ($session_connecte AND $loginPage == true) {
 	header('Location: index.php');
 }
@@ -53,11 +55,8 @@ if (!empty($_POST['inscription'])){
 	
     <body>
 		<hr/>
-			
+		<div class="form_inscription">
 			<form action="register.php" method="POST" class="register">
-
-				<p><?= $succes ?> <?= $error ?> <?= $error_user ?></p>
-
 				<p><label>Nom: </label><input type="text" value="<?php if(isset($nom)){ echo $nom; }?>" name="nom" /></p>
 				<p><label>Prenom: </label><input type="text" value="<?php if(isset($prenom)){ echo $prenom; }?>" name="prenom" /></p>
 				<p><label>Pseudo: </label><input type="text" value="<?php if(isset($username)){ echo $username; }?>" name="username" /></p>
@@ -65,9 +64,9 @@ if (!empty($_POST['inscription'])){
 				<p><label>Question secrète: </label><input type="text" value="<?php if(isset($question)){ echo $question; }?>" name="question" /></p>
 				<p><label>Réponse : </label><input type="text" value="<?php if(isset($reponse)){ echo $reponse; }?>" name="reponse" /></p>
 				<input type="submit" value="S'inscrire" name="inscription" >
-
+				<p><?= $succes ?> <?= $error ?> <?= $error_user ?></p>
 			</form>
-
+		</div>
 		<hr/>
 		<?php include("footer.php"); ?>
 
