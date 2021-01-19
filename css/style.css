@@ -1,5 +1,4 @@
-/* feuille de style index.html 
-Créateur : Kevin Champagnol 
+/* Créateur : Kevin Champagnol 
 Site extranet GBAF */
 
 /* Définition de la largeur du corps de page et de son centrage */
@@ -12,7 +11,10 @@ body {
     margin-right: auto;
 }
 
-/* mise en forme des container page index */
+																					/* mise en forme des container page index */
+
+
+
 
 .container_presentation, .container_description, .container_tableau, .container_acteur, .container_commentaire {
 	width: 90%;
@@ -33,22 +35,13 @@ body {
 .logo {
 	width: 80px;
 	height: 80px;
-	padding: 10px 10px 10px 10px;
-}*
-
-/* mise en forme de l'icone user */
-.user_icone {
-	
-	margin-right: 5px;
-	text-align: center;
-	width: 18px;
-	height: 18px;
+	padding: 10px;
 }
 
 /* place information user */
 .user_info {
 	float: right;
-	padding: 10px 10px 10px 10px;
+	padding: 10px;
 }
 
 /* centrage bloc illustration et redimension image*/
@@ -127,14 +120,39 @@ body {
 /* block commentaire */
 
 .nombre_commentaire{
-	margin-left: 15px;
-	display: inline-block;
+	font-size: 1.3em;
 }
 
-.new_commentaire {
-	
+.fonction_commentaire{
+	display: flex;
+	margin-top: 5px;
+	justify-content: space-around;
+	flex-wrap: wrap;
 }
+
 .bouton_commentaire{
+	text-align: center;
+	font-size: 10px;
+	width: 80px;
+}
+
+.images_pouces{
+	margin-top: 2px;
+}
+
+.champs_commentaire{
+	width: 90%;
+	margin: auto;
+	margin-top: 10px;
+}
+
+.textarea{
+	width: 100%;
+	height: 30px;
+}
+
+.envoie_com{
+	width: 100%;
 }
 
 .container_commentaire {
@@ -152,3 +170,77 @@ body {
 }
 
 
+.like_active{
+	background-color: rgba(0, 23, 255, 0.8);
+}
+
+.dislike_active{
+	background-color: rgba(230, 7, 0, 0.8);
+}
+
+																				/* Mise en page login.php */
+.login label{
+	display: block; 
+}
+
+.login   {
+	text-align: center;
+}
+
+.lien_log{
+	text-align: center;
+}
+
+																				/*Mise en page inscription */
+
+.form_inscription label{
+	display: block; 
+	width: 150px;
+	float: left;
+}
+
+.form_inscription {
+	margin-left: 10px;
+}
+
+																				/* Mise en page Lost Pass*/
+
+.lostpass_pseudo label , .lostpass_question label , .change_password label{
+	display: block; 
+	width: 150px;
+	float: left;
+}
+
+.lostpass_pseudo, .lostpass_question, .change_password{
+	margin-left: 10px;
+}
+
+																				/* Page index mobile */
+
+@media screen and (max-width: 767px) {
+	body{
+		background-color: rgba(230, 7, 0, 0.9);
+	}
+
+	.header  {
+		text-align: center;
+		width: 100%;
+		margin-bottom: 50px;
+	}
+
+	.user_info{
+		text-align: center;
+	}
+	.mini_logo{
+		float: none;
+	}
+
+}
+
+																				/*Page acteur mobile*/
+
+@media screen and (max-width: 767px) {
+	.image_acteur img{
+		width: 200px;
+	}
+}
