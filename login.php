@@ -1,8 +1,8 @@
 <?php
 require('db/bdd.php');
-
-require ('header.php');
 $loginPage = true;
+require ('header.php');
+
 if ($session_connecte) {
 	header('Location: index.php');
 	exit();
@@ -16,15 +16,11 @@ $error = Null;
 	    'username' => $_POST['username']));
 	$resultat = $req->fetch();
 
-	//$password_correct = password_verify($_POST['password'], $resultat['password']);
 
-
-	if (!$resultat)
-	{
+	if (!$resultat){
 	    $error = 'Mauvais identifiant !';
 	}
-	else
-	{
+	else{
 		$password_correct = password_verify($_POST['password'], $resultat['password']);
 	    if ($password_correct) {
 	        
@@ -54,12 +50,14 @@ $error = Null;
 </head>
 <body>
 	<hr>
-		<form action="" method="POST" class="login">
-			<p><label>Pseudo : </label><input type="text" name="username" /></p>
-			<p><label>Mot de passe : </label><input type="password" name="password" /></p>
+	<div class="login">
+		<form action="" method="POST">
+			<p><label>Pseudo</label><input type="text" name="username" /></p>
+			<p><label>Mot de passe</label><input type="password" name="password" /></p>
 			<input type="submit"  value="Connexion" name="connexion" />
 			<?= $error ?>
 		</form>
+	</div>
 		<div class="lien_log">
 			<p><strong><a href="register.php" class="link">S'inscrire</a> || <a href="lost_pass.php" class="link">Mot de passe oublié</a></strong></p>
 		</div>
