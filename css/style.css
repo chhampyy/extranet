@@ -217,11 +217,10 @@ body {
 
 																				/* Page index mobile */
 
-@media screen and (max-width: 767px) {
-	body{
-		background-color: rgba(230, 7, 0, 0.9);
-	}
-
+@media only screen and (max-width: 767px)
+{
+    
+	
 	.header  {
 		text-align: center;
 		width: 100%;
@@ -231,6 +230,7 @@ body {
 	.user_info{
 		text-align: center;
 	}
+
 	.mini_logo{
 		float: none;
 	}
@@ -241,6 +241,7 @@ body {
 
 @media screen and (max-width: 767px) {
 	.image_acteur img{
-		width: 200px;
+		width: 160px;
 	}
 }
+
