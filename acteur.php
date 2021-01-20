@@ -93,6 +93,20 @@ $req_nb_dislike = $bdd->prepare('SELECT count(vote) AS TotalDislike FROM vote WH
 $req_nb_dislike->execute(array('id_acteur'=> $donnees['id_acteur']));
 $nombre_dislike = $req_nb_dislike->fetch(); //Affiche Nb like
 
+//Recupération du like courant
+$req_like_courant = $bdd->prepare('SELECT vote FROM vote WHERE id_user = :id_user AND id_acteur = :id_acteur AND vote = 2');
+$req_like_courant->execute(array(
+					'id_user'=> $_SESSION['id_user'],
+					'id_acteur'=> $donnees['id_acteur']));
+$like_courant = $req_like_courant->fetch();
+
+//Recupération du dislike courant
+$req_dislike_courant = $bdd->prepare('SELECT vote FROM vote WHERE id_user = :id_user AND id_acteur = :id_acteur AND vote = 1');
+$req_dislike_courant->execute(array(
+					'id_user'=> $_SESSION['id_user'],
+					'id_acteur'=> $donnees['id_acteur']));
+$dislike_courant = $req_dislike_courant->fetch();
+
 }
 else{
 	header('Location: index.php'); 
@@ -113,7 +127,7 @@ else{
     <body>
 		<hr/>
 			<div class="container_acteur">
-				<div class="image_acteur"><img src="<?= $donnees['logo'] ?>" class="acteur_logo"/></div>
+				<div class="image_acteur"><img src="<?= $donnees['logo'] ?>" /></div>
 					<div class="texte_acteur">
 						<h2><?= $donnees['acteur'] ?></h2>
 							<p><a href="#">Lien acteur</a></p>
@@ -134,8 +148,8 @@ else{
 								<div class="like_dislike">
 									<div class="images_pouces">
 										<form action="" method="POST" name="vote_user">
-											<button type="submit" name="likes" value="2" <?php if (!empty($_POST['likes'])): ?> class="like_active" <?php endif ?>><img src="css/images/like.png" alt="bouton like" class="like" /> <?= $nombre_like['TotalAime'] ?> </button>
-											<button type="submit" name="dislikes" value="1" <?php if (!empty($_POST['dislikes'])): ?> class="dislike_active" <?php endif ?>><img src="css/images/dislike.png" alt="bouton dislike" class="dislike" /> <?= $nombre_dislike['TotalDislike'] ?> </button>
+											<button type="submit" name="likes" value="2" <?= (isset($like_courant['vote'])== 2) ?  'class="like_active"' : ''; ?>><img src="css/images/like.png" alt="bouton like" class="like" /> <?= $nombre_like['TotalAime'] ?> </button>
+											<button type="submit" name="dislikes" value="1" <?= (isset($dislike_courant['vote'])== 1) ? 'class="dislike_active"' : ''; ?>><img src="css/images/dislike.png" alt="bouton dislike" class="dislike" /> <?= $nombre_dislike['TotalDislike'] ?> </button>
 										</form> 
 									</div>
 								</div>
