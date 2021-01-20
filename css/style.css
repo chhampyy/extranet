@@ -56,14 +56,14 @@ body {
 
 /* ajustement dimension logo acteur sur index */
 .mini_logo img {
-	width: 140px;
+	width: 110px;
 }
 
 
 .tableau {
 	border: 1px solid;
 	margin: 5px;
-	padding: 5px;
+	padding: 8px;
 	font-size: 14px;
 }
 
@@ -215,6 +215,8 @@ body {
 	margin-left: 10px;
 }
 
+/*------------------------------------------------------------------------------------- Mise en page du design pour mobile ----------------------------------------------------------------------------*/
+																				
 																				/* Page index mobile */
 
 @media only screen and (max-width: 767px)
@@ -233,6 +235,7 @@ body {
 
 	.mini_logo{
 		float: none;
+		text-align: center;
 	}
 
 }
