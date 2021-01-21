@@ -41,12 +41,6 @@ else{
 		}
 }
 
-	
-	
-
-
-	
-
 //Recupération du nombre de commentaire sur page acteur selectionné
 $req_nb_commentaire = $bdd->prepare('SELECT count(*) AS TotalCommentaire FROM post WHERE id_acteur = :id_acteur');
 $req_nb_commentaire->execute(array('id_acteur'=> $donnees['id_acteur']));
@@ -130,7 +124,7 @@ else{
 				<div class="image_acteur"><img src="<?= $donnees['logo'] ?>" /></div>
 					<div class="texte_acteur">
 						<h2><?= $donnees['acteur'] ?></h2>
-							<p><a href="#">Lien acteur</a></p>
+							<p><strong><a href="http://example.com/" target="_blank">Site internet</a></strong></p>
 							<p><?= $donnees['description']?></p>
 					</div> 
 			</div>
