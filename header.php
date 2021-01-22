@@ -13,7 +13,7 @@ if (isset($_SESSION['nom']) AND isset($_SESSION['prenom'])){
 <html>
 <head>
 	<link rel="shortcut icon" href="css/images/favicon.ico" type="image/x-icon">
-	<meta name="viewport" content="width=767, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	<header>
