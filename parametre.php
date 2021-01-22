@@ -2,6 +2,9 @@
 require('db/bdd.php');
 require ('header.php');
 
+if (!$session_connecte AND $loginPage == false) {
+	header('Location: login.php');
+}
 
 $error = Null;
 $succes = Null;
